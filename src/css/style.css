@@ -1,0 +1,515 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.app-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 88%;
+  width: 100%;
+}
+
+aside {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  background: #171717;
+  height: 100%;
+}
+
+.up-content {
+  height: 60%;
+  width: 100%;
+}
+
+.buttons-color {
+  width: 15%;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0.5rem;
+}
+
+.bx {
+  cursor: pointer;
+}
+
+.bx-time-five {
+  cursor: auto;
+}
+
+.bx-heart,
+.bxs-heart{
+  color: #1db954;
+}
+
+.red {
+  color: red;
+}
+
+.orange {
+  color: orange;
+}
+
+.green {
+  color: green;
+}
+
+details {
+  background: #3e3e3e;
+  border-radius: 16px;
+  color: #a8a8a8;
+  padding: 1rem;
+  margin: 0.5rem;
+}
+
+summary{
+  cursor: pointer;
+}
+
+details p{
+  padding: 1rem;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.todos, .favoritos{
+  border-radius: 16px;
+}
+
+.song-image {
+  width: 100%;
+  height: 40%;
+  background: #3e3e3e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.song-image img{
+  height: 70%;
+}
+
+.big-content {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.info-content {
+  width: 100%;
+  height: 20%;
+  background: #3e3e3e;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+.search-Music {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 12px;
+}
+
+#search {
+  border-radius: 20px;
+  border: none;
+  padding: 0.5rem;
+}
+
+.profile-add-music {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+}
+
+.profile-name {
+  display: flex;
+
+  gap: 8px;
+  align-items: center;
+  justify-content: end;
+}
+
+.profile-name img {
+  width: 15%;
+  border-radius: 100%;
+}
+
+.username {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.pause-play-add-song {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 8px;
+}
+
+#pause-play {
+  width: 30%;
+  border-radius: 20px;
+  background-color: #1db954;
+  border: none;
+  padding: 0.5rem;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.bxs-add-to-queue {
+  font-size: 1.3rem;
+}
+
+.list-songs {
+  height: 80%;
+  background: #282828;
+  box-shadow: -10px -80px 100px rgba(0, 0, 0, 0.3); 
+  z-index: 1;
+  position: relative;
+  overflow: auto;
+}
+
+table {
+  width: 95%;
+  border-collapse: collapse;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+table thead {
+  border-bottom: 1px solid #a8a8a8;
+}
+
+thead tr th {
+  text-align: center;
+  color: #a8a8a8;
+  font-size: 1.5rem;
+}
+
+tbody tr{
+  text-align: center;
+}
+
+.active-song {
+  background-color: #171717; /* Color de fondo oscuro */
+  color: #fff; /* Texto blanco para contraste */
+}
+
+footer {
+  width: 100%;
+  height: 12%;
+  display: flex;
+  align-items: center;
+  background: #3e3e3e;
+  position: relative;
+  box-shadow: 1px -5px 20px black;
+  z-index: 2;
+}
+
+.song-author {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 8px;
+  width: 20%;
+  padding: 1rem;
+}
+
+.song-name {
+  color: white;
+  text-shadow: 1px 1px 1px black;
+}
+
+.author-name {
+  color: #a8a8a8;
+  text-shadow: 1px 1px 1px black;
+}
+
+.general-info {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.reproductor-icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 50%;
+  font-size: 2rem;
+  margin: auto;
+  color: white;
+  height: 50%;
+}
+
+.bx-play-circle,
+.bx-pause-circle{
+  font-size: 2.5rem;
+}
+
+.bx-skip-previous,
+.bx-skip-next{
+  font-size: 2.3rem;
+}
+
+.bx-shuffle,
+.bx-loop{
+  font-size: 1.8rem;
+}
+
+.reproductor-icons .bx:hover{
+  transition: 0.5s;
+  font-size: 3rem;
+}
+
+.color:hover{
+  color: #1db954;
+}
+
+.current-time-song{
+  color: white;
+}
+
+.total-time-song{
+  color: white;
+}
+
+.reproductor-bar {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+progress {
+  width: 80%;
+  height: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #c4c4c4;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* Estilo de la barra interna (progreso) */
+progress::-webkit-progress-bar {
+  background-color: #c4c4c4;
+}
+
+progress::-webkit-progress-value {
+  background-color: #000; /* Color de la barra de progreso (negro) */
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.sound {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: white;
+  font-size: 1.5rem;
+}
+
+#soundBar {
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+#soundBar::-webkit-slider-runnable-track {
+  background: linear-gradient(to right,
+      #171717 0%,
+      #171717 var(--volumeBar, 50%),
+      #a7a7a7 var(--volumeBar, 50%),
+      #a7a7a7 100%);
+  height: 6px;
+}
+
+#soundBar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px; /* Tamaño visible de la bolita */
+  width: 6px; /* Ancho visible de la bolita */
+  background: #171717; /* Color del thumb */
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  cursor: pointer;
+}
+
+#soundBar:hover {
+  opacity: 1;
+}
+
+/* Estilos del modal */
+/* Modal Base */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Mostrar Modal */
+.modal.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Contenido del Modal */
+.modal-content {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: relative;
+  width: 80%;
+  max-width: 400px;
+}
+
+.modal-content h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #333;
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-content label {
+  font-weight: bold;
+  margin-top: 10px;
+  color: #666;
+}
+
+.modal-content input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+}
+
+.modal-content .inputFile {
+  border: none;
+  padding: 0;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.form-buttons button {
+  margin: 0 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+.form-buttons button:last-child {
+  background-color: #888;
+}
+
+/* Ocultar el icono inicialmente */
+.play-icon {
+  opacity: 0;
+  transform: scale(0.8); /* Aparece desde un tamaño más pequeño */
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  font-size: 1.3rem;
+}
+
+.play-title{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: 1rem;
+}
+
+.play-container{
+  border-radius: 100%;
+  background-color: #1db954;
+  width: 30px;
+  height: 30px;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  opacity: 0;
+  transform: scale(0.8); /* Aparece desde un tamaño más pequeño */
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilo para el ícono */
+.play-icon {
+  font-size: 1.5rem; /* Ajusta según tu diseño */
+  color: #fff; /* Cambia el color según tu diseño */
+  transform: scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Mostrar el contenedor y el ícono al pasar el mouse sobre la fila */
+.song-row:hover .play-container,
+.song-row:hover .play-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.song-row{
+  height: 4rem;
+}
+
+.song-row:hover{
+  background: #171717;
+}
+
+.song-row td{
+  width: 30%;
+}
+
+.song-row td:nth-child(4){
+  width: 10%;
+}

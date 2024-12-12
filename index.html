@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" initial-scale="1.0" />
+    <title>Music App</title>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <script src="./src/js/script.js" defer></script>
+    <link rel="stylesheet" href="./src/css/style.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!--Contenedor principal-->
+      <main>
+        <!--Parte izquierda-->
+        <aside>
+          <div class="up-content">
+            <div class="buttons-color">
+              <i class="bx bxs-circle red"></i>
+              <i class="bx bxs-circle orange"></i>
+              <i class="bx bxs-circle green"></i>
+            </div>
+            <details>
+              <summary>Filtros</summary>
+              <p class="todos">Todos</p>
+              <p class="favoritos">Favoritos</p>
+            </details>
+          </div>
+          <div class="song-image">
+            <img src="" id="song" alt="Title song" />
+          </div>
+        </aside>
+
+        <!--Parte derecha-->
+        <div class="big-content">
+          <div class="info-content">
+            <div class="search-Music">
+              <input
+                type="search"
+                placeholder="Search"
+                name="search"
+                id="search"
+              />
+              <h2>Music</h2>
+            </div>
+            <div class="profile-add-music">
+              <div class="profile-name">
+                <img src="./src/images/broly.png" alt="" />
+                <p class="username">Fernando</p>
+              </div>
+              <div class="pause-play-add-song">
+                <input
+                  type="button"
+                  name="pause-play"
+                  id="pause-play"
+                  value="Reproducir"
+                />
+                <i class="bx bxs-add-to-queue"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="list-songs">
+            <table>
+              <thead>
+                <tr>
+                  <th>Título</th>
+                  <th>Artista</th>
+                  <th><i class="bx bx-time-five"></i></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+
+      <!--Reproductor-->
+      <footer>
+        <div class="song-author">
+          <p class="song-name"></p>
+          <p class="author-name"></p>
+        </div>
+        <div class="general-info">
+          <div class="reproductor-icons">
+            <i class="bx bx-repeat color"></i>
+            <i class="bx bx-skip-previous color"></i>
+            <i id="play-pause-button" class="bx bx-play-circle color"></i>
+            <i class="bx bx-skip-next color"></i>
+            <i class="bx bx-shuffle color"></i>
+          </div>
+          <div class="reproductor-bar">
+            <span class="current-time-song"></span>
+            <progress id="progress-bar" max="100" value="0"></progress>
+            <span class="total-time-song"></span>
+          </div>
+        </div>
+        <div class="sound">
+          <i class="bx bxs-volume-low"></i>
+          <input type="range" id="soundBar" min="0" max="100" value="50" />
+        </div>
+      </footer>
+
+      <!-- Modal para subir canción -->
+      <div id="modal" class="modal hidden">
+        <div class="modal-content">
+          <h2>Subir Canción</h2>
+          <form id="uploadForm" method="post">
+            <label for="songTitle">Título:</label>
+            <input
+              type="text"
+              id="songTitle"
+              name="title"
+              maxlength="20"
+              required
+            />
+            <label for="artist">Artista:</label>
+            <input
+              type="text"
+              id="artist"
+              name="artist"
+              maxlength="20"
+              required
+            />
+            <label for="songFile">Canción (mp3):</label>
+            <input
+              type="file"
+              id="songFile"
+              name="music"
+              accept=".mp3"
+              required
+              class="inputFile"
+            />
+            <label for="coverImage">Portada (png/jpg):</label>
+            <input
+              type="file"
+              id="coverImage"
+              name="cover"
+              accept=".png, .jpg"
+              required
+              class="inputFile"
+            />
+            <div class="form-buttons">
+              <button type="submit">Subir</button>
+              <button type="button" id="closeModal">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
