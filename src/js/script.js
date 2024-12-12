@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const loopButton = document.querySelector(".bx-repeat"); // Botón de la opción de bucle
   const shuffleButton = document.querySelector(".bx-shuffle"); // Botón de la opción de canción aleatoria
 
-
   let isPlaying = false; // Variable para rastrear si la canción está reproduciéndose
   let currentSong = null; // Variable para guardar la canción actual
   let songsList = []; // Lista de canciones
@@ -359,6 +358,19 @@ document.addEventListener("DOMContentLoaded", () => {
     progressBar.style.setProperty("--progress", `${progress}%`);
   });
 
+  audioPlayer.addEventListener("ended", () => {
+    if (isShuffleEnabled) {
+      // Si shuffle está habilitado, selecciona una canción aleatoria
+      playRandomSong();
+    } else if (isLoopEnabled) {
+      // Si loop está habilitado, repite la misma canción
+      audioPlayer.play();
+    } else {
+      // Si no está habilitado shuffle ni loop, pasa a la siguiente canción
+      nextButton.click();
+    }
+  });
+
   // Función para formatear tiempo en minutos y segundos
   function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
@@ -383,53 +395,95 @@ document.addEventListener("DOMContentLoaded", () => {
   // Lógica del botón "Next"
   nextButton.addEventListener("click", () => {
     if (songsList.length > 0) {
+      // Seleccionar la siguiente canción, teniendo en cuenta si shuffle está activado
       if (isShuffleEnabled) {
-        // Si shuffle está activado, selecciona una canción aleatoria
         let randomIndex;
         do {
           randomIndex = Math.floor(Math.random() * songsList.length);
         } while (randomIndex === currentSongIndex); // Asegúrate de que no repita la misma canción
         currentSongIndex = randomIndex;
       } else {
-        // Si shuffle no está activado, avanza a la siguiente canción
-        currentSongIndex = (currentSongIndex + 1) % songsList.length; // Usa módulo para asegurar que vuelva al principio
+        currentSongIndex = (currentSongIndex + 1) % songsList.length; // Avanzar a la siguiente canción
       }
+
       const nextSong = songsList[currentSongIndex];
-      playSong(
-        nextSong.filepath,
-        nextSong.title,
-        nextSong.artist,
-        nextSong.cover,
-        formatTime(nextSong.duration)
-      );
+
+      // Crear un objeto Audio para obtener la duración de la canción
+      const audioElement = new Audio(nextSong.filepath);
+
+      // Asegurarse de que se ha cargado la duración
+      audioElement.addEventListener("loadedmetadata", () => {
+        const duration = formatTime(audioElement.duration);
+
+        // Llamar a la función playSong con la duración
+        playSong(
+          nextSong.filepath,
+          nextSong.title,
+          nextSong.artist,
+          nextSong.cover,
+          duration
+        );
+      });
+
+      // Manejo de errores si no se puede cargar la duración del audio
+      audioElement.addEventListener("error", () => {
+        console.error(
+          "Error cargando la duración de la canción:",
+          nextSong.title
+        );
+      });
+
+      // Iniciar la carga del audio para obtener la duración
+      audioElement.load();
     }
   });
 
   previousButton.addEventListener("click", () => {
     if (songsList.length > 0) {
+      // Seleccionar la canción anterior, teniendo en cuenta si shuffle está activado
       if (isShuffleEnabled) {
-        // Si shuffle está activado, selecciona una canción aleatoria
         let randomIndex;
         do {
           randomIndex = Math.floor(Math.random() * songsList.length);
         } while (randomIndex === currentSongIndex); // Asegúrate de que no repita la misma canción
         currentSongIndex = randomIndex;
       } else {
-        // Si no está activado el shuffle, retrocedemos normalmente
         if (currentSongIndex === 0) {
-          currentSongIndex = songsList.length - 1; // Al llegar al principio, saltamos a la última canción
+          currentSongIndex = songsList.length - 1; // Si estamos en la primera canción, saltamos a la última
         } else {
           currentSongIndex--; // Retrocedemos al índice anterior
         }
       }
+
       const previousSong = songsList[currentSongIndex];
-      playSong(
-        previousSong.filepath,
-        previousSong.title,
-        previousSong.artist,
-        previousSong.cover,
-        formatTime(previousSong.duration)
-      );
+
+      // Crear un objeto Audio para obtener la duración de la canción
+      const audioElement = new Audio(previousSong.filepath);
+
+      // Asegurarse de que se ha cargado la duración
+      audioElement.addEventListener("loadedmetadata", () => {
+        const duration = formatTime(audioElement.duration);
+
+        // Llamar a la función playSong con la duración
+        playSong(
+          previousSong.filepath,
+          previousSong.title,
+          previousSong.artist,
+          previousSong.cover,
+          duration
+        );
+      });
+
+      // Manejo de errores si no se puede cargar la duración del audio
+      audioElement.addEventListener("error", () => {
+        console.error(
+          "Error cargando la duración de la canción:",
+          previousSong.title
+        );
+      });
+
+      // Iniciar la carga del audio para obtener la duración
+      audioElement.load();
     }
   });
 

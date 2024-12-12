@@ -135,6 +135,30 @@ details p{
   padding: 0.5rem;
 }
 
+.search-container {
+  display: flex;
+  align-items: center;
+  width: 100%; /* Ancho ajustable según diseño */
+  border: 1px solid #ccc;
+  border-radius: 25px; /* Bordes redondeados */
+  padding: 5px 10px; /* Espaciado interno */
+  background-color: #fff; /* Fondo del contenedor */
+}
+
+.search-container i {
+  color: black; /* Color del ícono */
+  font-size: 18px; /* Tamaño del ícono */
+}
+
+.search-container input {
+  flex: 1; /* Toma todo el espacio restante */
+  border: none; /* Elimina bordes del input */
+  outline: none; /* Elimina el borde azul al hacer clic */
+  font-size: 16px; /* Tamaño del texto */
+}
+
+
+
 .profile-add-music {
   display: flex;
   flex-direction: column;
