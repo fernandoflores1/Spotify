@@ -371,6 +371,44 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  function playRandomSong() {
+    if (songsList.length > 0) {
+      let randomIndex;
+
+      do {
+        randomIndex = Math.floor(Math.random() * songsList.length);
+      } while (randomIndex === currentSongIndex); // Asegurar que no repite la misma canción (opcional)
+
+      currentSongIndex = randomIndex; // Actualizamos el índice actual
+      const randomSong = songsList[currentSongIndex]; // Seleccionamos la canción aleatoria
+
+      // Crear un objeto Audio para obtener la duración de la canción seleccionada
+      const audioElement = new Audio(randomSong.filepath);
+
+      audioElement.addEventListener("loadedmetadata", () => {
+        const duration = formatTime(audioElement.duration);
+
+        // Reproducir la canción seleccionada
+        playSong(
+          randomSong.filepath,
+          randomSong.title,
+          randomSong.artist,
+          randomSong.cover,
+          duration
+        );
+      });
+
+      audioElement.addEventListener("error", () => {
+        console.error(
+          "Error cargando la duración de la canción:",
+          randomSong.title
+        );
+      });
+
+      audioElement.load(); // Asegurar que se cargue el audio
+    }
+  }
+
   // Función para formatear tiempo en minutos y segundos
   function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
@@ -504,8 +542,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Seleccionar el elemento de favoritos
   const favoritesOption = document.querySelector(".favoritos");
   favoritesOption.addEventListener("click", async () => {
-    favoritesOption.style.background = "#1db954";
-    allOption.style.background = "";
     try {
       // Fetch de nuevo para asegurar que tenemos todas las canciones
       const response = await fetch(URLsongs);
@@ -592,10 +628,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Añadir evento para mostrar todas las canciones nuevamente
-  allOption.style.background = "#1db954"; // Por defecto estará esta opción activada por lo que tendrá este background
   allOption.addEventListener("click", () => {
-    allOption.style.background = "#1db954";
-    favoritesOption.style.background = "";
     const tableBody = document.querySelector(".list-songs tbody");
     tableBody.innerHTML = ""; // Limpiar tabla actual
     fetchSongs(); // Volver a cargar todas las canciones

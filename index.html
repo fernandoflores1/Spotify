@@ -30,7 +30,7 @@
             </details>
           </div>
           <div class="song-image">
-            <img src="" id="song" alt="Title song" />
+            <img src="" id="song" />
           </div>
         </aside>
 
@@ -47,7 +47,7 @@
                   id="search"
                 />
               </div>
-              
+
               <h2>Music</h2>
             </div>
             <div class="profile-add-music">
@@ -112,9 +112,19 @@
       <!-- Modal para subir canción -->
       <div id="modal" class="modal hidden">
         <div class="modal-content">
-          <h2>Subir Canción</h2>
           <form id="uploadForm" method="post">
-            <label for="songTitle">Título:</label>
+            <button type="button" id="closeModal">
+              <i class="bx bx-x"></i>
+            </button>
+            <label for="songFile">Añadir nueva canción</label>
+            <input
+              type="file"
+              id="songFile"
+              name="music"
+              accept=".mp3"
+              required
+            />
+            <label for="songTitle">Título</label>
             <input
               type="text"
               id="songTitle"
@@ -122,7 +132,7 @@
               maxlength="20"
               required
             />
-            <label for="artist">Artista:</label>
+            <label for="artist">Autor</label>
             <input
               type="text"
               id="artist"
@@ -130,27 +140,16 @@
               maxlength="20"
               required
             />
-            <label for="songFile">Canción (mp3):</label>
-            <input
-              type="file"
-              id="songFile"
-              name="music"
-              accept=".mp3"
-              required
-              class="inputFile"
-            />
-            <label for="coverImage">Portada (png/jpg):</label>
+            <label for="coverImage">Imagen de portada</label>
             <input
               type="file"
               id="coverImage"
               name="cover"
               accept=".png, .jpg"
               required
-              class="inputFile"
             />
             <div class="form-buttons">
               <button type="submit">Subir</button>
-              <button type="button" id="closeModal">Cancelar</button>
             </div>
           </form>
         </div>
